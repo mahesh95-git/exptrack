@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ExpTrack – Simple Expense Tracker</title>
+  <meta name="description" content="Simple expense tracker to manage your balance, income and expenses easily."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ── HEADER ── -->
+    <header class="header">
+      <div class="logo">💸 ExpTrack</div>
+      <button class="btn-set-balance" id="btnSetBalance">⚙ Set Balance</button>
+    </header>
+
+    <!-- ── BALANCE CARD ── -->
+    <section class="balance-section">
+      <p class="balance-label">Current Balance</p>
+      <h1 class="balance-amount" id="balanceDisplay">₹0.00</h1>
+      <div class="balance-pills">
+        <div class="pill income-pill">
+          <span class="pill-icon">↑</span>
+          <div>
+            <p class="pill-label">Income</p>
+            <p class="pill-value" id="totalIncome">₹0.00</p>
+          </div>
+        </div>
+        <div class="pill expense-pill">
+          <span class="pill-icon">↓</span>
+          <div>
+            <p class="pill-label">Expenses</p>
+            <p class="pill-value" id="totalExpense">₹0.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACTION BUTTONS ── -->
+    <div class="action-buttons">
+      <button class="action-btn income-btn" id="btnAddIncome">
+        <span class="action-icon">＋</span> Add Income
+      </button>
+      <button class="action-btn expense-btn" id="btnAddExpense">
+        <span class="action-icon">－</span> Add Expense
+      </button>
+    </div>
+
+    <!-- ── TRANSACTION HISTORY ── -->
+    <section class="history-section">
+      <div class="history-header">
+        <h2 class="history-title">Transactions</h2>
+        <button class="btn-clear" id="btnClearAll">Clear All</button>
+      </div>
+
+      <div id="txnList">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">📋</div>
+          <p>No transactions yet.<br/>Add income or expense to get started!</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ── SET BALANCE MODAL ── -->
+  <div class="modal-overlay" id="balanceModal">
+    <div class="modal">
+      <h2 class="modal-title">Set Balance</h2>
+      <p class="modal-desc">Enter your current wallet / account balance.</p>
+      <input type="number" class="big-input" id="balanceInput" placeholder="e.g. 25000" min="0" step="0.01"/>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelBalance">Cancel</button>
+        <button class="btn-confirm" id="confirmBalance">Set Balance</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADD INCOME MODAL ── -->
+  <div class="modal-overlay" id="incomeModal">
+    <div class="modal">
+      <h2 class="modal-title income-title">💰 Add Income</h2>
+      <div class="field">
+        <label class="field-label">Reason</label>
+        <input type="text" class="field-input" id="incomeReason" placeholder="e.g. Salary, Freelance…"/>
+      </div>
+      <div class="field">
+        <label class="field-label">Amount (₹)</label>
+        <input type="number" class="field-input" id="incomeAmount" placeholder="0.00" min="0.01" step="0.01"/>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelIncome">Cancel</button>
+        <button class="btn-confirm income-confirm" id="confirmIncome">Add Income</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADD EXPENSE MODAL ── -->
+  <div class="modal-overlay" id="expenseModal">
+    <div class="modal">
+      <h2 class="modal-title expense-title">💸 Add Expense</h2>
+      <div class="field">
+        <label class="field-label">Reason</label>
+        <input type="text" class="field-input" id="expenseReason" placeholder="e.g. Groceries, Rent…"/>
+      </div>
+      <div class="field">
+        <label class="field-label">Amount (₹)</label>
+        <input type="number" class="field-input" id="expenseAmount" placeholder="0.00" min="0.01" step="0.01"/>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelExpense">Cancel</button>
+        <button class="btn-confirm expense-confirm" id="confirmExpense">Add Expense</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
